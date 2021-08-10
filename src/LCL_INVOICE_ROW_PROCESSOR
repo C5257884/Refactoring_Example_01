@@ -7,12 +7,12 @@
     PUBLIC SECTION.
       METHODS:
         gtd_splitting
-          IMPORTING i_orig_inv TYPE vbeln_vf
+          IMPORTING i_orig_inv     TYPE vbeln_vf
                     i_orig_inv_pos TYPE vbrp-posnr
-          CHANGING  cs_invoice LIKE LINE OF it_invoice.
+          CHANGING  cs_invoice     LIKE LINE OF it_invoice
+                    ct_gtd_invoice TYPE ztj_3rf_tcorrinv..
     PROTECTED SECTION.
 
-    PRIVATE SECTION.
       TYPES:
         BEGIN OF ty_s_gtdinv,
           herkl     TYPE j_3rfgtdinv-herkl,
@@ -105,7 +105,7 @@
             round_total TYPE vbdpr-kzwi4,
             lnum TYPE i, i_cnt TYPE i,
             gtd_date(6).
-      DATA: ls_gtd_invoice LIKE LINE OF gtd_invoice[] ,
+      DATA: ls_gtd_invoice LIKE LINE OF ct_gtd_invoice[] ,
             ls_lands       LIKE LINE OF lands[],
             lt_gtdnumber_split TYPE STANDARD TABLE OF j_3rfgtdinv-gtdnumber WITH DEFAULT KEY,
             l_subrc        TYPE sy-subrc,
@@ -221,7 +221,7 @@
           ls_gtd_invoice-orig_smvat = cs_invoice-orig_smvat - round_smvat.
           ls_gtd_invoice-orig_total = cs_invoice-orig_total - round_total.
         ENDIF.
-        APPEND ls_gtd_invoice TO gtd_invoice[].
+        APPEND ls_gtd_invoice TO ct_gtd_invoice[].
       ENDLOOP.
 
     ENDMETHOD.                    "gtd_splitting
