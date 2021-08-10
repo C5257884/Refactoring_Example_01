@@ -16,7 +16,7 @@ CLASS lcl_tdc_reader DEFINITION FOR TESTING FINAL.
           i_param_name TYPE etpar_name
         EXPORTING
           e_paramn_value TYPE any.
-  PROTECTED SECTION.
+  PRIVATE SECTION.
     DATA: m_curr_var TYPE etvar_id,                 " текущий вариант
           mo_tdc TYPE REF TO cl_apl_ecatt_tdc_api.
 ENDCLASS.                    "lcl_tdc_reader DEFINITION
@@ -111,7 +111,7 @@ ENDCLASS.                    "ltd_invoice_row_processor IMPLEMENTATION
 *----------------------------------------------------------------------*
 *
 *----------------------------------------------------------------------*
-CLASS ltc_invoice_row_processor DEFINITION FOR TESTING
+CLASS ltc_invoice_row_processor DEFINITION FOR TESTING FINAL
   RISK LEVEL HARMLESS
   DURATION SHORT.
 
